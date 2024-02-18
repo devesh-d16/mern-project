@@ -213,6 +213,13 @@ app.get("/popularinwomen", async (req, res) => {
   console.log("Popular in women fetched");
   res.send(popular_in_women);
 });
+// creating endpoint for related product category
+app.get("/relatedproducts", async (req, res) => {
+  let products = await Product.find({ category: "women" });
+  let related_products = products.slice(0, 4);
+  console.log("Related Products fetched");
+  res.send(related_products);
+});
 
 // creating middleware to fetch user
 const fetchUser = async (req, res, next) => {
